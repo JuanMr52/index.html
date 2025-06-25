@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadro de Hormonas Metabólicas</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        @page {
+            size: A4;
+            margin: 1.5cm;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: white;
+            color: #333;
+            line-height: 1.4;
+            font-size: 10pt;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .header h1 {
+            font-size: 24pt;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            font-size: 12pt;
+            opacity: 0.9;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            border: 1px solid #e9ecef;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 9pt;
+            font-weight: 500;
+        }
+        
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-bottom: 20px;
+        }
+        
+        th {
+            background: #2c3e50;
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #34495e;
+        }
+        
+        th:first-child { width: 18%; }
+        th:nth-child(2) { width: 38%; }
+        th:nth-child(3) { width: 22%; }
+        th:nth-child(4) { width: 22%; }
+        
+        td {
+            padding: 10px 8px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+            line-height: 1.3;
+        }
+        
+        .hormone-cell {
+            font-weight: 600;
+            font-size: 10pt;
+        }
+        
+        .function-cell {
+            line-height: 1.3;
+        }
+        
+        .location-cell {
+            font-weight: 500;
+        }
+        
+        .memory-cell {
+            text-align: center;
+            font-size: 8pt;
+            line-height: 1.2;
+        }
+        
+        .emoji {
+            font-size: 14pt;
+            display: block;
+            margin-bottom: 3px;
+        }
+        
+        /* Categorías por colores */
+        .pancreatic { background-color: #fff3cd; }
+        .thyroid { background-color: #d1ecf1; }
+        .adrenal { background-color: #f8d7da; }
+        .pituitary { background-color: #e2e3e5; }
+        .adipose { background-color: #d4edda; }
+        .gastrointestinal { background-color: #ffeaa7; }
+        .reproductive { background-color: #fab1a0; }
+        .parathyroid { background-color: #fd79a8; }
+        .liver { background-color: #e6e6fa; }
+        .kidney { background-color: #b0e0e6; }
+        .heart { background-color: #ffa07a; }
+        .muscle { background-color: #f0e68c; }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 9pt;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧬 Cuadro de Hormonas Metabólicas</h1>
+        <p>Guía completa para Biología Molecular - Universidad</p>
+    </div>
+    
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #fff3cd;"></div>
+            <span>Pancreáticas</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #d1ecf1;"></div>
+            <span>Tiroideas</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #f8d7da;"></div>
+            <span>Suprarrenales</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #e2e3e5;"></div>
+            <span>Hipofisarias</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #d4edda;"></div>
+            <span>Tejido Adiposo</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #ffeaa7;"></div>
+            <span>Gastrointestinales</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #fab1a0;"></div>
+            <span>Reproductivas</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #fd79a8;"></div>
+            <span>Paratiroides</span>
+        </div>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Hormona</th>
+                <th>Función Principal</th>
+                <th>Ubicación/Origen</th>
+                <th>Ayuda Memoria</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- HORMONAS PANCREÁTICAS -->
+            <tr class="pancreatic">
+                <td class="hormone-cell">Insulina</td>
+                <td class="function-cell">Reduce glucosa en sangre, promueve captación de glucosa por células</td>
+                <td class="location-cell">Células β del páncreas (Islotes de Langerhans)</td>
+                <td class="memory-cell"><span class="emoji">🍯</span>"INSulina INSerta azúcar en células"</td>
+            </tr>
+            <tr class="pancreatic">
+                <td class="hormone-cell">Glucagón</td>
+                <td class="function-cell">Aumenta glucosa en sangre, estimula gluconeogénesis</td>
+                <td class="location-cell">Células α del páncreas</td>
+                <td class="memory-cell"><span class="emoji">⬆️</span>"GLUCagón sube GLUCosa"</td>
+            </tr>
+            <tr class="pancreatic">
+                <td class="hormone-cell">Somatostatina</td>
+                <td class="function-cell">Inhibe secreción de insulina y glucagón</td>
+                <td class="location-cell">Células δ del páncreas</td>
+                <td class="memory-cell"><span class="emoji">🛑</span>"SOMATOstatina PARA todo"</td>
+            </tr>
+            <tr class="pancreatic">
+                <td class="hormone-cell">Polipéptido pancreático</td>
+                <td class="function-cell">Regula secreciones pancreáticas y digestión</td>
+                <td class="location-cell">Células PP del páncreas</td>
+                <td class="memory-cell"><span class="emoji">🥞</span>"PP del Páncreas Para digestión"</td>
+            </tr>
+            
+            <!-- HORMONAS TIROIDEAS -->
+            <tr class="thyroid">
+                <td class="hormone-cell">T3 (Triyodotironina)</td>
+                <td class="function-cell">Acelera metabolismo, aumenta consumo de oxígeno</td>
+                <td class="location-cell">Glándula tiroides</td>
+                <td class="memory-cell"><span class="emoji">🔥</span>"T3 = Turbo Triple velocidad"</td>
+            </tr>
+            <tr class="thyroid">
+                <td class="hormone-cell">T4 (Tiroxina)</td>
+                <td class="function-cell">Precursor de T3, regula metabolismo basal</td>
+                <td class="location-cell">Glándula tiroides</td>
+                <td class="memory-cell"><span class="emoji">🏃</span>"T4 = Turbo 4 cilindros"</td>
+            </tr>
+            <tr class="thyroid">
+                <td class="hormone-cell">Calcitonina</td>
+                <td class="function-cell">Disminuye calcio sérico, inhibe resorción ósea</td>
+                <td class="location-cell">Células C de la tiroides</td>
+                <td class="memory-cell"><span class="emoji">📉</span>"CalciTONina BAJA el calcio"</td>
+            </tr>
+            
+            <!-- HORMONAS SUPRARRENALES -->
+            <tr class="adrenal">
+                <td class="hormone-cell">Cortisol</td>
+                <td class="function-cell">Aumenta gluconeogénesis, respuesta al estrés</td>
+                <td class="location-cell">Corteza suprarrenal</td>
+                <td class="memory-cell"><span class="emoji">😰</span>"CORTIsol para el estrés en la CORTeza"</td>
+            </tr>
+            <tr class="adrenal">
+                <td class="hormone-cell">Aldosterona</td>
+                <td class="function-cell">Regula balance de sodio y potasio</td>
+                <td class="location-cell">Zona glomerular suprarrenal</td>
+                <td class="memory-cell"><span class="emoji">🧂</span>"ALDOsterona regula SAL"</td>
+            </tr>
+            <tr class="adrenal">
+                <td class="hormone-cell">Adrenalina (Epinefrina)</td>
+                <td class="function-cell">Respuesta lucha/huida, aumenta glucosa</td>
+                <td class="location-cell">Médula suprarrenal</td>
+                <td class="memory-cell"><span class="emoji">⚡</span>"ADRENalina = ADREnalina pura"</td>
+            </tr>
+            <tr class="adrenal">
+                <td class="hormone-cell">Noradrenalina</td>
+                <td class="function-cell">Vasoconstricción, aumenta presión arterial</td>
+                <td class="location-cell">Médula suprarrenal</td>
+                <td class="memory-cell"><span class="emoji">💪</span>"NORAdrenalina aprieta arterias"</td>
+            </tr>
+            <tr class="adrenal">
+                <td class="hormone-cell">DHEA</td>
+                <td class="function-cell">Precursor de hormonas sexuales</td>
+                <td class="location-cell">Zona reticular suprarrenal</td>
+                <td class="memory-cell"><span class="emoji">🧬</span>"DHEA = Don Hormona Eterna Anti-edad"</td>
+            </tr>
+            
+            <!-- HORMONAS HIPOFISARIAS -->
+            <tr class="pituitary">
+                <td class="hormone-cell">Hormona del Crecimiento (GH)</td>
+                <td class="function-cell">Estimula crecimiento, metabolismo de proteínas</td>
+                <td class="location-cell">Hipófisis anterior</td>
+                <td class="memory-cell"><span class="emoji">📏</span>"GH = Gigante Hormona"</td>
+            </tr>
+            <tr class="pituitary">
+                <td class="hormone-cell">IGF-1</td>
+                <td class="function-cell">Mediador de efectos de GH, crecimiento celular</td>
+                <td class="location-cell">Hígado (estimulado por GH)</td>
+                <td class="memory-cell"><span class="emoji">🎯</span>"IGF-1 = I Grow Fast 1"</td>
+            </tr>
+            <tr class="pituitary">
+                <td class="hormone-cell">ACTH</td>
+                <td class="function-cell">Estimula producción de cortisol</td>
+                <td class="location-cell">Hipófisis anterior</td>
+                <td class="memory-cell"><span class="emoji">📢</span>"ACTH grita a las suprarrenales"</td>
+            </tr>
+            <tr class="pituitary">
+                <td class="hormone-cell">TSH</td>
+                <td class="function-cell">Estimula glándula tiroides</td>
+                <td class="location-cell">Hipófisis anterior</td>
+                <td class="memory-cell"><span class="emoji">🎺</span>"TSH = Trompeta Suena para Hormonas tiroideas"</td>
+            </tr>
+            <tr class="pituitary">
+                <td class="hormone-cell">ADH (Vasopresina)</td>
+                <td class="function-cell">Retención de agua, concentra orina</td>
+                <td class="location-cell">Hipófisis posterior</td>
+                <td class="memory-cell"><span class="emoji">💧</span>"ADH = Agua Debe Haber"</td>
+            </tr>
+            <tr class="pituitary">
+                <td class="hormone-cell">Prolactina</td>
+                <td class="function-cell">Estimula producción de leche</td>
+                <td class="location-cell">Hipófisis anterior</td>
+                <td class="memory-cell"><span class="emoji">🍼</span>"PROLactina PROduce Leche"</td>
+            </tr>
+            <tr class="pituitary">
+                <td class="hormone-cell">Oxitocina</td>
+                <td class="function-cell">Contracción uterina, eyección de leche</td>
+                <td class="location-cell">Hipófisis posterior</td>
+                <td class="memory-cell"><span class="emoji">🤱</span>"OXItocina = OXígeno del amor"</td>
+            </tr>
+            <tr class="pituitary">
+                <td class="hormone-cell">FSH</td>
+                <td class="function-cell">Estimula desarrollo folicular</td>
+                <td class="location-cell">Hipófisis anterior</td>
+                <td class="memory-cell"><span class="emoji">🥚</span>"FSH = Folículo Siempre Hormona"</td>
+            </tr>
+            <tr class="pituitary">
+                <td class="hormone-cell">LH</td>
+                <td class="function-cell">Estimula ovulación y producción de testosterona</td>
+                <td class="location-cell">Hipófisis anterior</td>
+                <td class="memory-cell"><span class="emoji">💥</span>"LH = Libera Hormonas"</td>
+            </tr>
+            
+            <!-- HORMONAS DEL TEJIDO ADIPOSO -->
+            <tr class="adipose">
+                <td class="hormone-cell">Leptina</td>
+                <td class="function-cell">Suprime apetito, aumenta gasto energético</td>
+                <td class="location-cell">Adipocitos</td>
+                <td class="memory-cell"><span class="emoji">🚫</span>"LEPTina dice NO a la comida"</td>
+            </tr>
+            <tr class="adipose">
+                <td class="hormone-cell">Adiponectina</td>
+                <td class="function-cell">Mejora sensibilidad a insulina</td>
+                <td class="location-cell">Adipocitos</td>
+                <td class="memory-cell"><span class="emoji">✅</span>"ADIPOnectina = AMIGA de la insulina"</td>
+            </tr>
+            <tr class="adipose">
+                <td class="hormone-cell">Resistina</td>
+                <td class="function-cell">Induce resistencia a insulina</td>
+                <td class="location-cell">Adipocitos</td>
+                <td class="memory-cell"><span class="emoji">🛡️</span>"RESISTina se RESISTE a la insulina"</td>
+            </tr>
+            <tr class="adipose">
+                <td class="hormone-cell">Visfatina</td>
+                <td class="function-cell">Mimetiza efectos de insulina</td>
+                <td class="location-cell">Tejido adiposo visceral</td>
+                <td class="memory-cell"><span class="emoji">🎭</span>"VISfatina = VISte como insulina"</td>
+            </tr>
+            
+            <!-- HORMONAS GASTROINTESTINALES -->
+            <tr class="gastrointestinal">
+                <td class="hormone-cell">GLP-1</td>
+                <td class="function-cell">Estimula secreción de insulina, inhibe glucagón</td>
+                <td class="location-cell">Células L del intestino</td>
+                <td class="memory-cell"><span class="emoji">🍽️</span>"GLP-1 = Glucosa Low Please!"</td>
+            </tr>
+            <tr class="gastrointestinal">
+                <td class="hormone-cell">GIP</td>
+                <td class="function-cell">Estimula secreción de insulina</td>
+                <td class="location-cell">Células K del duodeno</td>
+                <td class="memory-cell"><span class="emoji">🍯</span>"GIP = Glucosa Insulin Please"</td>
+            </tr>
+            <tr class="gastrointestinal">
+                <td class="hormone-cell">Grelina</td>
+                <td class="function-cell">Estimula apetito, aumenta GH</td>
+                <td class="location-cell">Estómago</td>
+                <td class="memory-cell"><span class="emoji">😋</span>"GRELina = GRRR tengo hambre"</td>
+            </tr>
+            <tr class="gastrointestinal">
+                <td class="hormone-cell">Colecistoquinina (CCK)</td>
+                <td class="function-cell">Estimula saciedad, libera enzimas digestivas</td>
+                <td class="location-cell">Intestino delgado</td>
+                <td class="memory-cell"><span class="emoji">🔄</span>"CCK = Come Con Karisma (saciedad)"</td>
+            </tr>
+            <tr class="gastrointestinal">
+                <td class="hormone-cell">Gastrina</td>
+                <td class="function-cell">Estimula secreción de ácido gástrico</td>
+                <td class="location-cell">Antro gástrico</td>
+                <td class="memory-cell"><span class="emoji">🧪</span>"GASTRina activa el GASTRo"</td>
+            </tr>
+            <tr class="gastrointestinal">
+                <td class="hormone-cell">Secretina</td>
+                <td class="function-cell">Estimula secreción de bicarbonato pancreático</td>
+                <td class="location-cell">Duodeno</td>
+                <td class="memory-cell"><span class="emoji">🧹</span>"SECRETina limpia el ácido"</td>
+            </tr>
+            <tr class="gastrointestinal">
+                <td class="hormone-cell">Motilin</td>
+                <td class="function-cell">Estimula motilidad intestinal</td>
+                <td class="location-cell">Duodeno y yeyuno</td>
+                <td class="memory-cell"><span class="emoji">🌊</span>"MOTILin = MOTILidad intestinal"</td>
+            </tr>
+            <tr class="gastrointestinal">
+                <td class="hormone-cell">Péptido YY</td>
+                <td class="function-cell">Inhibe vaciado gástrico, reduce apetito</td>
+                <td class="location-cell">Colon e íleon</td>
+                <td class="memory-cell"><span class="emoji">💤</span>"YY = Yawn Yawn (calma el apetito)"</td>
+            </tr>
+            
+            <!-- HORMONAS REPRODUCTIVAS -->
+            <tr class="reproductive">
+                <td class="hormone-cell">Testosterona</td>
+                <td class="function-cell">Anabolismo proteico, desarrollo muscular</td>
+                <td class="location-cell">Testículos</td>
+                <td class="memory-cell"><span class="emoji">💪</span>"TESTOsterona = TEST de fuerza"</td>
+            </tr>
+            <tr class="reproductive">
+                <td class="hormone-cell">Estrógenos</td>
+                <td class="function-cell">Regulan metabolismo de lípidos y glucosa</td>
+                <td class="location-cell">Ovarios</td>
+                <td class="memory-cell"><span class="emoji">🌸</span>"ESTRógenos = ESTRella femenina"</td>
+            </tr>
+            <tr class="reproductive">
+                <td class="hormone-cell">Progesterona</td>
+                <td class="function-cell">Aumenta resistencia a insulina en embarazo</td>
+                <td class="location-cell">Ovarios y placenta</td>
+                <td class="memory-cell"><span class="emoji">🤰</span>"PROGesterona = PROGreso del embarazo"</td>
+            </tr>
+            <tr class="reproductive">
+                <td class="hormone-cell">Inhibina</td>
+                <td class="function-cell">Inhibe secreción de FSH</td>
+                <td class="location-cell">Ovarios y testículos</td>
+                <td class="memory-cell"><span class="emoji">🚫</span>"INHIBina INHIBe FSH"</td>
+            </tr>
+            <tr class="reproductive">
+                <td class="hormone-cell">Activina</td>
+                <td class="function-cell">Estimula secreción de FSH</td>
+                <td class="location-cell">Ovarios y testículos</td>
+                <td class="memory-cell"><span class="emoji">🎬</span>"ACTIVina ACTIVa FSH"</td>
+            </tr>
+            
+            <!-- HORMONAS PARATIROIDES -->
+            <tr class="parathyroid">
+                <td class="hormone-cell">PTH (Parathormona)</td>
+                <td class="function-cell">Aumenta calcio sérico, activa vitamina D</td>
+                <td class="location-cell">Glándulas paratiroides</td>
+                <td class="memory-cell"><span class="emoji">📈</span>"PTH = Please Take Hydrogen (calcio)"</td>
+            </tr>
+            <tr class="parathyroid">
+                <td class="hormone-cell">FGF23</td>
+                <td class="function-cell">Regula fósforo y vitamina D</td>
+                <td class="location-cell">Osteocitos</td>
+                <td class="memory-cell"><span class="emoji">🦴</span>"FGF23 = Fantastic Growth Factor 23"</td>
+            </tr>
+            
+            <!-- HORMONAS HEPÁTICAS -->
+            <tr class="liver">
+                <td class="hormone-cell">Hepcidina</td>
+                <td class="function-cell">Regula absorción de hierro</td>
+                <td class="location-cell">Hígado</td>
+                <td class="memory-cell"><span class="emoji">🔒</span>"HEPcidina = HEPática controla hierro"</td>
+            </tr>
+            <tr class="liver">
+                <td class="hormone-cell">Angiotensinógeno</td>
+                <td class="function-cell">Precursor de angiotensina II</td>
+                <td class="location-cell">Hígado</td>
+                <td class="memory-cell"><span class="emoji">🔄</span>"ANGIOtensinógeno = preANGIOtensina"</td>
+            </tr>
+            <tr class="liver">
+                <td class="hormone-cell">Betatrofina</td>
+                <td class="function-cell">Estimula proliferación de células β</td>
+                <td class="location-cell">Hígado y tejido adiposo</td>
+                <td class="memory-cell"><span class="emoji">🔄</span>"BETAtrofina = BETA células crecen"</td>
+            </tr>
+            <tr class="liver">
+                <td class="hormone-cell">Trombopoietina</td>
+                <td class="function-cell">Estimula producción de plaquetas</td>
+                <td class="location-cell">Hígado</td>
+                <td class="memory-cell"><span class="emoji">🩸</span>"TROMBOpoietina = TROMBO plaquetas"</td>
+            </tr>
+            
+            <!-- HORMONAS RENALES -->
+            <tr class="kidney">
+                <td class="hormone-cell">Eritropoyetina</td>
+                <td class="function-cell">Estimula producción de glóbulos rojos</td>
+                <td class="location-cell">Riñón</td>
+                <td class="memory-cell"><span class="emoji">🔴</span>"ERITROpoyetina = ERITROcitos nuevos"</td>
+            </tr>
+            <tr class="kidney">
+                <td class="hormone-cell">Renina</td>
+                <td class="function-cell">Inicia cascada renina-angiotensina</td>
+                <td class="location-cell">Riñón</td>
+                <td class="memory-cell"><span class="emoji">⚡</span>"RENina = RENal INIcia presión"</td>
+            </tr>
+            <tr class="kidney">
+                <td class="hormone-cell">Calcitriol</td>
+                <td class="function-cell">Forma activa de vitamina D, absorbe calcio</td>
+                <td class="location-cell">Riñón</td>
+                <td class="memory-cell"><span class="emoji">☀️</span>"CalciTRIol = TRIPLE poder del calcio"</td>
+            </tr>
+            <tr class="kidney">
+                <td class="hormone-cell">Klotho</td>
+                <td class="function-cell">Regulador del envejecimiento y metabolismo</td>
+                <td class="location-cell">Riñón</td>
+                <td class="memory-cell"><span class="emoji">⏰</span>"KLOTHO = controla el tiempo"</td>
+            </tr>
+            
+            <!-- HORMONAS CARDIACAS -->
+            <tr class="heart">
+                <td class="hormone-cell">ANP</td>
+                <td class="function-cell">Reduce presión arterial y volumen sanguíneo</td>
+                <td class="location-cell">Aurícula cardíaca</td>
+                <td class="memory-cell"><span class="emoji">💓</span>"ANP = Aurícula Naturalmente Protege"</td>
+            </tr>
+            <tr class="heart">
+                <td class="hormone-cell">BNP</td>
+                <td class="function-cell">Vasodilatación, natriuresis</td>
+                <td class="location-cell">Ventrículos cardíacos</td>
+                <td class="memory-cell"><span class="emoji">🫀</span>"BNP = Big Natural Protector"</td>
+            </tr>
+            <tr class="heart">
+                <td class="hormone-cell">Endotelina</td>
+                <td class="function-cell">Vasoconstricción potente</td>
+                <td class="location-cell">Endotelio vascular</td>
+                <td class="memory-cell"><span class="emoji">🔒</span>"ENDOtelina = ENDOrece arterias"</td>
+            </tr>
+            
+            <!-- HORMONAS MUSCULARES -->
+            <tr class="muscle">
+                <td class="hormone-cell">Irisina</td>
+                <td class="function-cell">Convierte grasa blanca en parda</td>
+                <td class="location-cell">Músculo esquelético</td>
+                <td class="memory-cell"><span class="emoji">🏃</span>"IRISina = IRISistible quema grasa"</td>
+            </tr>
+            <tr class="muscle">
+                <td class="hormone-cell">Mioquinas</td>
+                <td class="function-cell">Mejoran metabolismo durante ejercicio</td>
+                <td class="location-cell">Músculo esquelético</td>
+                <td class="memory-cell"><span class="emoji">🏋️</span>"MIOquinas = MIOfibras
